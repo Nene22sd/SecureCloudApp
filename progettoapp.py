@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 st.title('Diabetes Prediction App')
 st.write('The task consists in predicting accurate blood glucose levels in Type 1 Diabetes patients. Blood glucose level prediction is a challenging task for AI researchers, with the potential to improve the health and wellbeing of people with diabetes. Knowing in advance when blood glucose is approaching unsafe levels provides time to pro-actively avoid hypo- and hyperglycaemia and their concomitant complications.')
-image = Image.open('app/image.jpg')
+image = Image.open('App/image.jpg')
 st.image(image, use_column_width=True)
 patients = st.selectbox("Number of patients",(540,544,552,559,563,567,'ModelMerge'))
 uploaded_file = st.file_uploader('Choose a file',type=['xls','xlsx'])
@@ -36,7 +36,7 @@ button_side = st.sidebar.button('Predict side')
 
 
 if (st.button('Predict')):
-    string_model = 'app/model/model' + str(patients) + '.h5'
+    string_model = 'App/model/model' + str(patients) + '.h5'
     model = load_model(string_model)
     predict_array = df1.to_numpy()
     st.write(np.shape(predict_array))
@@ -78,7 +78,7 @@ if button_side:
         array_prediction_side.append(cho[i])
         
     array_prediction_side_numpy = np.asarray([[array_prediction_side]])
-    string_model = 'app/model/model' + str(patients_sidebar) + '.h5'
+    string_model = 'App/model/model' + str(patients_sidebar) + '.h5'
     model = load_model(string_model)
     result = model.predict(array_prediction_side_numpy)
     st.sidebar.write(result)
