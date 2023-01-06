@@ -39,7 +39,7 @@ if (st.button('Predict')):
     string_model = 'App/model/model' + str(patients) + '.h5'
     model = load_model(string_model)
     predict_array = df1.to_numpy()
-    st.write(np.shape(predict_array))
+    #st.write(np.shape(predict_array))
     if np.shape(predict_array) != (8,3):   
         st.warning('The excel file must contain 9 rows of 3 values ​​each')
     else:
@@ -50,25 +50,6 @@ if (st.button('Predict')):
         array_tomodel = np.asarray([predict_array_reshape])
         result = model.predict(array_tomodel)
         st.write(result)
-        """
-        array_predictions = []
-        for j in range(len(predict_array_reshape)):
-            if j < 21: 
-                array_predictions[j]=predict_array_reshape[j+3]
-            else:
-                array_predictions[21]=result
-                array_predictions[j]=predict_array_reshape[j]
-        array_tomodel = np.asarray([array_predictions])
-        result2 = model.predict(array_tomodel)
-        #result = model.predict(feat_cols)
-        st.write(result)
-        y=np.concatenate((glucose,result,result2))
-        x = [0,1,2,3,4,5,6,7,13,19]
-        plt.plot(x, y)
-        plt.xlabel('x - axis')
-        plt.ylabel('y - axis')     
-        plt.title('Glucose prediction!')
-        plt.show()"""
     
 if button_side:
     array_prediction_side = []
